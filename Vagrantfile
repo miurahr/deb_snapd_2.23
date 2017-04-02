@@ -17,6 +17,8 @@ Vagrant.configure(2) do |config|
     inline: "sudo apt update && sudo apt install -y devscripts dh-golang dh-systemd golang-any indent libapparmor-dev libseccomp-dev python3-markdown xfslibs-dev" +
             " autoconf automake autotools-dev bash-completion debhelper dh-apparmor dh-autoreconf fakeroot gettext grub-common gnupg2 init-system-helpers" +
             " libcap-dev libglib2.0-dev libudev-dev pkg-config python3 python3-docutils squashfs-tools udev"
+  config.vm.provision "shell",
+    inline: "cd /vagrant && tar xf snapd_2.23.6.tar.xz && cd snapd-2.23.6 && debuild -uc -us -b -i"
 
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
